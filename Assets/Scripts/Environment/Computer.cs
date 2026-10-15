@@ -9,20 +9,37 @@ namespace Environment
 {
     public class Computer : MonoBehaviour, IInteractable
     {
-        [SerializeReference] public GenericQueue<Task> tasks = new GenericQueue<Task>(); // Put your stack/queue here :)
-        [SerializeReference] public GenericQueue<Task> secondaryTasks = new GenericQueue<Task>();
-
+        [SerializeReference] public GenericQueue<Task> tasks = new GenericQueue<Task>();
+        [SerializeReference] public GenericQueue<Task> lightTask = new GenericQueue<Task>();
         [SerializeReference] public List<GenericQueue<Task>> activeList = new List<GenericQueue<Task>>();
+
+        [SerializeField] LightOnTask lights;
+        [SerializeField] bool isActive = false;
 
         private void Awake()
         {
             activeList.Add(tasks);
-            activeList.Add(secondaryTasks);
+            activeList.Add(lightTask);
         }
 
         public void OnInteract()
         {
-            // if list in lists are 0, remove list
+            if(activeList.Count > 0 && !isActive)
+            {
+                isActive = true;
+                lightTask.Enqueue(lights);
+            }
+
+            else if (activeList.Count == 0 && isActive)
+            {
+                isActive = false;
+                lightTask.Enqueue(lights);
+                lightTask.Peek().Execute();
+                lightTask.Dequeue();
+
+                Overload();
+            }
+
             foreach(GenericQueue<Task> taskList in activeList)
             {
                 if(taskList.queueOfTasks.Count == 0)
@@ -35,11 +52,11 @@ namespace Environment
             }
 
             activeList.RemoveAll(taskList => taskList.queueOfTasks.Count == 0);
+        }
 
-            if (activeList.Count == 0)
-            {
-                OnAttack();
-            }
+        public void Overload()
+        {
+            Debug.Log("No more tasks to run. Computer overload! You destroyed the computer");
         }
 
         public void OnAttack()
