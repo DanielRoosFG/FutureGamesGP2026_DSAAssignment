@@ -4,6 +4,7 @@ using UnityEngine;
 using Utils;
 using System.Collections.Generic;
 using UnityEditor.ShaderKeywordFilter;
+using Unity.VisualScripting;
 
 namespace Environment
 {
@@ -13,8 +14,13 @@ namespace Environment
         [SerializeReference] public GenericQueue<Task> lightTask = new GenericQueue<Task>();
         [SerializeReference] public List<GenericQueue<Task>> activeList = new List<GenericQueue<Task>>();
 
+        [Header("Light Handler")]
         [SerializeField] LightOnTask lights;
         [SerializeField] bool isActive = false;
+
+        [Header("Emplyee Handler")]
+        [SerializeField] CheckEmployeeTask checkEmployee;
+        EmployeeArray employeeArray = new EmployeeArray();
 
         private void Awake()
         {

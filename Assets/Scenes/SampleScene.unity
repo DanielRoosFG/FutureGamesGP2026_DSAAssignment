@@ -6212,6 +6212,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightController
   lightTask: {fileID: 11400000, guid: cee1c25c739571148940aee872c2b3de, type: 2}
   lights: {fileID: 589332962}
+--- !u!114 &1892286049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892286045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c05a95b846d44d458617ddee4183bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Environment.Employees
+  employeeUser: []
 --- !u!1001 &1902037266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6877,6 +6890,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1057683460427819544, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1892286047}
+    - targetCorrespondingSourceObject: {fileID: 1057683460427819544, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892286049}
   m_SourcePrefab: {fileID: 100100000, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
 --- !u!1001 &8404672306686481740
 PrefabInstance:

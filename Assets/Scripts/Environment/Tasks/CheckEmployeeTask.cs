@@ -25,24 +25,15 @@ namespace Environment.Tasks
     {
         [SerializeField] TextAsset jsonFile;
 
-
         public override void Execute()
         {
             Employee[] employees = JsonUtility.FromJson<EmployeeArray>(jsonFile.text).employees;
 
             foreach(Employee employee in employees)
             {
-                // sortering
+                EmployeesHandler.instance.employeeUser = new Employee[employees.Length];
 
-
-                Debug.Log
-                    (
-                    "\nName: " + employee.name +
-                    "\nID: " + employee.employeeId +
-                    "\nHas clearance: " + employee.hasEngineRoomClearance + 
-                    "\nLast entrance to engine room: " + employee.lastEntranceInEngineRoom +
-                    "\nLast exit from engine room: " + employee.lastExitFromEngineRoom
-                    );
+                EmployeesHandler.instance.employeeUser = employees;
             }
         }
     }
