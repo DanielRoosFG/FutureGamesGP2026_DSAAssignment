@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e8befb5ae1445bba8af71ae2821eb5, type: 3}
-  m_Name: Task1
-  m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.DebugPrintTask
-  textToPrint: Going once
+  m_Script: {fileID: 11500000, guid: a0692e395e0523d4d979f7086bba14b9, type: 3}
+  m_Name: Check Employees Task
+  m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.CheckEmployeeTask
+  jsonFile: {fileID: 4900000, guid: e9fde063960ea0c47b23dc3cd4e6b257, type: 3}
