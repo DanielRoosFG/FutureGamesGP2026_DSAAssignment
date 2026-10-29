@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Environment.Tasks
 {
     [Serializable]
-    public class Employee
+    public class EmployeeJson
     {
         public string name;
         public int employeeId;
@@ -15,9 +15,22 @@ namespace Environment.Tasks
     }
 
     [Serializable]
+    public class Employee
+    {
+        public string name;
+        public int employeeId;
+        public bool hasEngineRoomClearance;
+        public DateTime lastEntranceInEngineRoom;
+        public DateTime lastExitFromEngineRoom;
+
+        public string lastEntranceDisplay;
+        public string lastExitDisplay;
+    }
+
+    [Serializable]
     public class EmployeeArray
     {
-        public Employee[] employees;
+        public EmployeeJson[] employees;
     }
 
     [CreateAssetMenu(fileName = "Check Employees Task", menuName = "Check Employees Task")]
@@ -27,14 +40,33 @@ namespace Environment.Tasks
 
         public override void Execute()
         {
-            Employee[] employees = JsonUtility.FromJson<EmployeeArray>(jsonFile.text).employees;
+            EmployeeJson[] jsonEmployees = JsonUtility.FromJson<EmployeeArray>(jsonFile.text).employees;
 
-            foreach(Employee employee in employees)
+            Employee[] employees = new Employee[jsonEmployees.Length];
+
+            for(int i = 0; i < jsonEmployees.Length; i++)
             {
-                EmployeesHandler.instance.employeeUser = new Employee[employees.Length];
+                EmployeeJson jsonEmployee = jsonEmployees[i];
+                DateTime entrance = DateTime.Parse(jsonEmployee.lastEntranceInEngineRoom);
 
-                EmployeesHandler.instance.employeeUser = employees;
+                DateTime exit = DateTime.Parse(jsonEmployee.lastExitFromEngineRoom);
+
+                employees[i] = new Employee
+                {
+                    name = jsonEmployee.name,
+                    employeeId = jsonEmployee.employeeId,
+                    hasEngineRoomClearance = jsonEmployee.hasEngineRoomClearance,
+
+                    lastEntranceInEngineRoom = entrance,
+                    lastExitFromEngineRoom = exit,
+
+                    lastEntranceDisplay = entrance.ToString("yyyy-MM-dd HH:mm:ss"),
+
+                    lastExitDisplay = exit.ToString("yyyy-MM-dd HH:mm:ss")
+                };
             }
+
+            EmployeesHandler.instance.employeeUser = employees;
         }
     }
 }
