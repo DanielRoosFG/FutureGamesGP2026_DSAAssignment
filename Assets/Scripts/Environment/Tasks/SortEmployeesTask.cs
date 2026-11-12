@@ -9,8 +9,7 @@ namespace Environment.Tasks
     {
         public override void Execute()
         {
-            Employee[] employees =
-                EmployeesHandler.instance.employeeUser;
+            Employee[] employees = EmployeesHandler.instance.employeeUser;
 
             MergeSort(employees, 0, employees.Length - 1);
         }
@@ -34,27 +33,39 @@ namespace Environment.Tasks
             Employee[] rightArray = new Employee[right - middle];
 
             for(int i = 0; i < leftArray.Length; i++)
+            {
                 leftArray[i] = array[left + i];
+            }
 
             for(int i = 0; i < rightArray.Length; i++)
+            {
                 rightArray[i] = array[middle + 1 + i];
+            }
 
             int l = 0, r = 0, k = left;
 
             while(l < leftArray.Length && r < rightArray.Length)
             {
-                if(leftArray[l].lastEntranceInEngineRoom >=
-                    rightArray[r].lastEntranceInEngineRoom)
+                if(leftArray[l].lastEntranceInEngineRoom >= rightArray[r].lastEntranceInEngineRoom)
+                {
                     array[k++] = leftArray[l++];
+                }
                 else
+                {
                     array[k++] = rightArray[r++];
+                }
             }
 
             while(l < leftArray.Length)
+            {
                 array[k++] = leftArray[l++];
+            }
+
 
             while(r < rightArray.Length)
+            {
                 array[k++] = rightArray[r++];
+            }
         }
     }
 }
