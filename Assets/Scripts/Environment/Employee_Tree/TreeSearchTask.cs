@@ -26,11 +26,6 @@ namespace Environment.Tasks
 
             Debug.Log("BST Search time: " + stopwatch.ElapsedTicks + " ticks");
             Debug.Log("Employees found: " + results.Count);
-
-            //foreach(Employee employee in results)
-            //{
-            //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
-            //}
         }
     }
 }

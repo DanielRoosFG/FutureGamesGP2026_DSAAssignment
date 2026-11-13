@@ -9,8 +9,7 @@ namespace Environment.Tasks
     {
         public override void Execute()
         {
-            Employee[] employees =
-                EmployeesHandler.instance.employeeUser;
+            Employee[] employees = EmployeesHandler.instance.employeeUser;
 
             DateTime startDate = new DateTime(2234, 8, 4);
             DateTime endDate = new DateTime(2234, 8, 7, 23, 59, 59);
@@ -35,11 +34,6 @@ namespace Environment.Tasks
 
             Debug.Log("Binary Search time: " + stopwatch.ElapsedTicks + " ticks");
             Debug.Log("Employees found: " + count);
-
-            //foreach(Employee employee in results)
-            //{
-            //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
-            //}
         }
 
         public static int Search(Employee[] array, DateTime date, bool findStart)

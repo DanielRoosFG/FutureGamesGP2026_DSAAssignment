@@ -2,7 +2,6 @@ using Environment.Tasks;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Search;
 
 
 namespace Environment
@@ -81,13 +80,20 @@ namespace Environment
             Employee employee = currentNode.GetData();
             DateTime employeeDate = employee.lastEntranceInEngineRoom;
 
-            if (employeeDate >= startDate && employeeDate <= endDate)
+            if(employeeDate >= startDate && employeeDate <= endDate)
             {
                 employeeList.Add(employee);
             }
 
-            SearchNode(currentNode.leftChild, startDate, endDate);
-            SearchNode(currentNode.rightChild, startDate, endDate);
+            if(employeeDate > startDate)
+            {
+                SearchNode(currentNode.leftChild, startDate, endDate);
+            }
+
+            if(employeeDate < endDate)
+            {
+                SearchNode(currentNode.rightChild, startDate, endDate);
+            }
         }
 
         public List<Employee> GetResults()

@@ -9,8 +9,7 @@ namespace Environment.Tasks
         {
             Employee[] employees = EmployeesHandler.instance.employeeUser;
 
-            EmployeesHandler.instance.employeeBST =
-                new EmployeeBST(employees[0]);
+            EmployeesHandler.instance.employeeBST = new EmployeeBST(employees[0]);
 
             int count = 1;
 
